@@ -54,7 +54,7 @@ spec:
           failureThreshold: 1
           initialDelaySeconds: 10
           periodSeconds: 10
+      {{- with .Values.affinity }}
       affinity:
-        {{- with .Values.affinity }}
         {{- toYaml . | nindent 8 }}
-        {{- else }}
+      {{- end }}
