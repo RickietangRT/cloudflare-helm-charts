@@ -35,6 +35,8 @@ spec:
       - name: cloudflared
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+            privileged: true
         command:
           - cloudflared
           - tunnel
