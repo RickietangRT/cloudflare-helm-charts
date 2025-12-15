@@ -50,9 +50,10 @@ spec:
             # it has an active connection to the edge.
             path: /ready
             port: 2000
-          failureThreshold: 1
           initialDelaySeconds: 30
-          periodSeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 6
       {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
