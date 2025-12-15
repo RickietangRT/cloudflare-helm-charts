@@ -25,18 +25,10 @@ spec:
         {{- end }}
     spec:
       serviceAccountName: {{ include "cloudflare-tunnel-remote.fullname" . }}
-      securityContext:
-        sysctls:
-          - name: net.core.rmem_max
-            value: "7500000"
-          - name: net.core.wmem_max
-            value: "7500000"
       containers:
       - name: cloudflared
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        securityContext:
-            privileged: true
         command:
           - cloudflared
           - tunnel
