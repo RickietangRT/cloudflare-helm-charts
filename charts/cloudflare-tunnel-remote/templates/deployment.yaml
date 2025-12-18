@@ -25,6 +25,9 @@ spec:
         {{- end }}
     spec:
       serviceAccountName: {{ include "cloudflare-tunnel-remote.fullname" . }}
+      hostNetwork: true
+      # Recommended when using hostNetwork to resolve cluster svc
+      dnsPolicy: ClusterFirstWithHostNet 
       containers:
       - name: cloudflared
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
